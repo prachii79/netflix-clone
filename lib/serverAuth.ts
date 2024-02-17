@@ -5,11 +5,12 @@ import prismadb from "@/lib/prismadb";
 
 const serverAuth = async (req: NextApiRequest) =>{
   const session = await getSession({ req });
-
+  console.log("request: " + req)
+  console.log("session: "+session)
   if(!session?.user?.email){
-    throw new Error("Not signed in");
+    throw new Error("Email not found");
   }
-
+  
   const currentUser = await prismadb.user.findUnique({
     where: {
       email: session.user.email,
@@ -19,6 +20,7 @@ const serverAuth = async (req: NextApiRequest) =>{
   if(!currentUser){
     throw new Error("Not signed in");
   }
+  //console.log({currentUser});
 
   return { currentUser };
 

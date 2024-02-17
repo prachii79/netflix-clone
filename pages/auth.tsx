@@ -81,7 +81,9 @@ const Auth = () => {
                         </button>
                         <div className="flex items-center gap-4 mt-8 justify-center">
                             <div 
-                            onClick={() =>signIn('google', {callbackUrl: '/profiles'})}
+                            onClick={(e) =>{e.preventDefault();
+                                signIn('google', {callbackUrl: '/profiles'})
+                            }}
                             className="
                               w-10
                               h-10
@@ -97,7 +99,9 @@ const Auth = () => {
                                 <FcGoogle size={30} />
                             </div>
                             <div 
-                            onClick={() =>signIn('github', {callbackUrl: '/profiles'})}
+                            onClick={(e) =>{e.preventDefault();
+                                signIn('github', {callbackUrl: '/profiles'})
+                            }}
                             className="
                               w-10
                               h-10
